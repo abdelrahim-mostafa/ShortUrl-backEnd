@@ -28,7 +28,7 @@ DB.once("open" , () => {
     // set user controller
     app.use('/user' , require('./user/controller'));
     // set URL controller
-    app.use('/user' , require('./urlParser/controller'));
+    app.use('/url' , require('./urlParser/controller'));
 
     app.listen(process.env.PORT , (err) => {
         if(err) console.log("listen Error : " ,err);
