@@ -42,7 +42,6 @@ router.post('/update' , jwtVerifying.verify ,(req ,res) => {
 router.delete('/delete/:_id' , jwtVerifying.verify ,(req ,res) => {
     //delete url from database
     Url.deleteOne({_id : req.params._id , owner : req.auth} ,(err , data) => {
-        console.log(err,data);
         // check the error is exist
         if(err){
             console.log(`token error : ${err}`);
@@ -56,7 +55,6 @@ router.delete('/delete/:_id' , jwtVerifying.verify ,(req ,res) => {
 router.get('/list' , jwtVerifying.verify ,(req ,res) => {
     //delete url from database
     Url.find({owner : req.auth} , { owner : 0 } ,(err , data) => {
-        console.log(err,data);
         // check the error is exist
         if(err){
             console.log(`token error : ${err}`);
