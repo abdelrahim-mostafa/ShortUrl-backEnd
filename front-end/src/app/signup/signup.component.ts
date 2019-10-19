@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
   loginForm : FormGroup;
   loginFormErrors : Object = {
@@ -30,4 +30,5 @@ export class LoginComponent implements OnInit {
   hasError(field){
     return (this.loginForm.get(field).valid && (this.loginForm.get(field).touched || this.loginForm.get(field).dirty));
   }
+
 }
