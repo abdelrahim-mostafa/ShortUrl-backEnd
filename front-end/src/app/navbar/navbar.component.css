@@ -1,0 +1,23 @@
+.navbar {
+    background-color: #1388e4;
+    border-color: #0863ab;
+    border-radius: 0;
+}
+.navbar .navbar-nav>li>a {
+    color: #fff;
+}
+.navbar .navbar-nav>li>a.active {
+    background-color: #196aab;
+    font-weight: bold;
+}
+.navbar-brand{
+    letter-spacing: 3px;
+    font-family: monospace;
+}
+.navbar-brand > span:first-child {
+    color: #fff;
+}
+.navbar-brand > span:last-child {
+    color: #FF9800;
+    font-weight: bold;
+}

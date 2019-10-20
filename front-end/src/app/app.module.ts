@@ -7,24 +7,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { HomeComponent } from './home/home.component';
+import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UrlComponent } from './url/url.component';
-import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { ListUrlsComponent } from './list-urls/list-urls.component';
+import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent,
+    UpdateUserInfoComponent,
     UserInfoComponent,
     UrlComponent,
-    UpdateUserInfoComponent,
-    NavbarComponent,
-    ListUrlsComponent
+    ListUrlsComponent,
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
