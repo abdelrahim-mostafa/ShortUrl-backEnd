@@ -11,6 +11,7 @@ import { UpdateUserInfoComponent } from './update-user-info/update-user-info.com
 const routes: Routes = [
   {path : 'login' , component: LoginComponent },
   {path : 'signup' , component: SignupComponent },
+  {path : '' , redirectTo : 'home' , pathMatch : 'full' },
   {
     path : 'home' , 
     component: HomeComponent ,

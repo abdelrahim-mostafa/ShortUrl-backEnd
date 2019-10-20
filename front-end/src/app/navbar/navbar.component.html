@@ -17,13 +17,13 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="urlS">
         <ul class="nav navbar-nav">
-          <li><a routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a></li>
+          <li><a routerLink="/home" *ngIf="loginStatus" routerLinkActive="active">Home <span class="sr-only">(current)</span></a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
-          <li><a routerLink="/signup" routerLinkActive="active">SignUp</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a routerLink="/login" routerLinkActive="active" *ngIf="!loginStatus">Login</a></li>
+          <li><a routerLink="/signup" routerLinkActive="active" *ngIf="!loginStatus">SignUp</a></li>
+          <li><a (click)="logOut()" *ngIf="loginStatus">Logout</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

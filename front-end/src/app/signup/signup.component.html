@@ -4,13 +4,13 @@
             <h2>SingUp <span class="glyphicon glyphicon-user"></span></h2>
         </div>
         <div class="body">
-            <form [formGroup]="loginForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+            <form [formGroup]="signupForm" class="form-horizontal" (ngSubmit)="onSubmit()">
                 <div class="form-group" [ngClass]="{'has-error' : hasError('firstname')}">
                     <label for="firstname" class="col-sm-3 control-label">First Name</label>
                     <div class="col-sm-9">
                         <input type="text" (blur)="getFormError()" class="form-control" id="firstname" formControlName="firstname" placeholder="First Name">
                         <span class="help-block" *ngIf="hasError('firstname')">
-                            {{ loginFormErrors.firstname }}
+                            {{ signupFormErrors.firstname }}
                         </span>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                     <div class="col-sm-9">
                         <input type="text" (blur)="getFormError()" class="form-control" id="lastname" formControlName="lastname" placeholder="last Name">
                         <span class="help-block" *ngIf="hasError('lastname')">
-                            {{ loginFormErrors.lastname }}
+                            {{ signupFormErrors.lastname }}
                         </span>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="col-sm-9">
                         <input type="email" (blur)="getFormError()" class="form-control" id="email" formControlName="email" placeholder="Email">
                         <span class="help-block" *ngIf="hasError('email')">
-                            {{ loginFormErrors.email }}
+                            {{ signupFormErrors.email }}
                         </span>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <div class="col-sm-9">
                         <input type="password" (blur)="getFormError()" class="form-control" id="password" formControlName="password" placeholder="Password">
                         <span class="help-block" *ngIf="hasError('password')">
-                            {{ loginFormErrors.password }}
+                            {{ signupFormErrors.password }}
                         </span>
                     </div>
                 </div>

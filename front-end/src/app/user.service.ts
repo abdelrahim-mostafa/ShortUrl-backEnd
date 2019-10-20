@@ -32,13 +32,20 @@ export class UserService {
   }
 
 
-  setLocalStorage (key , value) {
+  setLocalStorage(key , value) {
     localStorage.setItem(key , value);
   }
-  isLoggedin () {
-    return !!localStorage.getItem('token');
+  isLoggedin() : Observable<Object>{
+    let token = localStorage.getItem('token');
+    return this.http.get<Object>(`http://localhost:3000/user/verify` , {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.requsetError));
   }
-  logOut () {
+  logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userInfo');
   }
 }

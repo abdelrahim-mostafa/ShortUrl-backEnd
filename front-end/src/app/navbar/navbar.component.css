@@ -21,3 +21,6 @@
     color: #FF9800;
     font-weight: bold;
 }
+.nav>li>a:hover {
+    background-color: #02508e !important;
+}
