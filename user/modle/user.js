@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
     email : {
         type: String , 
         required : [true , "email required field"],
-        unique : [true , "this email alredy used"],
+        unique : true ,
         validate : {
             validator : (val) => /[a-zA-z0-9_\-\.]+\@[a-zA-z0-9_\-]{3,6}\.[a-zA-z]{3,5}/.test(val)
         }

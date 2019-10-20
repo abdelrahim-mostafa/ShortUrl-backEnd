@@ -13,6 +13,7 @@ import { UrlComponent } from './url/url.component';
 import { ListUrlsComponent } from './list-urls/list-urls.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

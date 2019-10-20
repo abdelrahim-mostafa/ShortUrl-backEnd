@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MyValidation } from '../my-validation';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +19,7 @@ export class SignupComponent implements OnInit {
     password : '',
   };
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb : FormBuilder , private user : UserService , private router : Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -35,7 +37,7 @@ export class SignupComponent implements OnInit {
     return (this.loginForm.get(field).invalid && (this.loginForm.get(field).touched || this.loginForm.get(field).dirty));
   }
 
-  getFormError(){
+  getFormError() : void {
     Object.keys(this.loginForm.controls).forEach( controll => {
       this.loginFormErrors[controll] = '';
       if(this.loginForm.get(controll).invalid){
@@ -43,7 +45,23 @@ export class SignupComponent implements OnInit {
           this.loginFormErrors[controll] += MyValidation.errorMessage(error , controll);
         });
       }
-    })
+    });
+  }
+
+  onSubmit() : void {
+    this.user.loginOrSignup(this.loginForm.value , 'signup').subscribe(
+      (res) => {
+        console.log('result' , res, res['status']);
+        if(res['status'] === "done"){
+          console.log('done');
+          this.router.navigate(['/login']);
+        }
+      },
+      (err) => {
+        console.log(err);
+
+      }
+    );
   }
 
 }
