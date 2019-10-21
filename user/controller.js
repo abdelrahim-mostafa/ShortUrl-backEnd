@@ -7,20 +7,20 @@ const jwtverifying = require('../jwtVerify/verifying');
 const User = require('./modle/user');
 
 let storage = multer.diskStorage({
-    destination : './public/images/',
+    destination : './front-end/src/assets/images/',
     filename : (req ,file , cb) =>{
         cb(null , file.fieldname+'_'+Date.now()+path.extname(file.originalname));
     }
 })
 function myFilter(file , cb){
-    let valid = /png|jpg|jpeg|gif/.test(path.extname(file.originalname));
+    let valid = /png|jpg|jpeg|gif/.test(path.extname(file.originalname.toLocaleLowerCase()));
     if(valid) cb(null , true);
-	else cb("not valid file" , false);
+	else cb("not valid file".toLocaleLowerCase() , false);
 }
 
 let fileUploder = multer({
     storage , 
-    limits : {fieldSize : 5*1024*1024} ,
+    limit: '4MB',
     fileFilter : (req , file , cb) => {
         myFilter(file , cb);
     }
@@ -92,24 +92,29 @@ router.post('/update' , jwtverifying.verify , (req , res) => {
         }
     });
 });
-router.post('/uploudFile' , jwtverifying.verify , (req , res) => {
+router.post('/uploadFile' , jwtverifying.verify , (req , res) => {
     let newData = {};
     // upload all files
     fileUploder(req ,res , (err) => {
-        for(file of req.files){
-            newData[file.fieldname] = file.filename;
-        }
-        // update user into database
-        User.updateOne( {_id : req.auth} , newData , (err , data) => {
-            // if some data missed or not valid or any error else
-            if(err) {
-                console.log(`signup error : ${err}`);
-                res.json({status : 'Saving error' , error : err.errmsg || err.message});
-            } else {
-                // user added successfuly
-                res.json({status : 'done'});
+        console.log(err);
+        if(err){
+            res.json({status : 'uploading error' , error : err});
+        } else {
+            for(file of req.files){
+                newData[file.fieldname] = file.filename;
             }
-        });  
+            // update user into database
+            User.updateOne( {_id : req.auth} , newData , (err , data) => {
+                // if some data missed or not valid or any error else
+                if(err) {
+                    console.log(`signup error : ${err}`);
+                    res.json({status : 'Saving error' , error : err.errmsg || err.message});
+                } else {
+                    // user added successfuly
+                    res.json({status : 'done' , profile : newData['profile'] });
+                }
+            });  
+        }
     });
 });
 // check if token verifyed or not

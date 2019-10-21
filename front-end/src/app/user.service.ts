@@ -28,9 +28,19 @@ export class UserService {
   }
 
   loginOrSignup(data , path) : Observable<Object> {
-    return this.http.post(`http://localhost:3000/user/${path}` , data , {
+    return this.http.post<Object>(`http://localhost:3000/user/${path}` , data , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json'
+      })
+    }).pipe(catchError(this.requsetError));
+  }
+  uploadProfile(data : any) : Observable<Object> {
+    let token = localStorage.getItem('token');
+    return this.http.post<Object>(`http://localhost:3000/user/uploadFile` , data , {
+      reportProgress: true,
+      observe: 'events',
+      headers : new HttpHeaders({
+        'Authorization' : `Bearer ${token}`
       })
     }).pipe(catchError(this.requsetError));
   }

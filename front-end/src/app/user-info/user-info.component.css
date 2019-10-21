@@ -1,0 +1,46 @@
+.user-info{
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+}
+.user-info .profile{
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+@media (max-width : 767px ){
+    .user-info .profile{
+        margin: auto;
+        width: 60%;
+    }
+    .user-info .data{
+        text-align: center;
+    }
+}
+.user-info .upload-image{
+    border-radius: 19px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 5px 10px;
+    margin: auto;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    max-width: 200px;
+}
+.user-info .btn-primary{
+    margin: auto;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    max-width: 200px;
+}
+.user-info #profile-image{
+    visibility: hidden;
+    position: absolute;
+}
+.user-info .data{
+    padding: 27px 0;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UrlService } from '../url.service';
 
 @Component({
   selector: 'app-list-urls',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListUrlsComponent implements OnInit {
 
-  constructor() { }
+  allUrls : Object;
+  constructor( private url : UrlService) { }
 
   ngOnInit() {
+    this.url.allUrls().subscribe(
+      (res) =>{
+        console.log(res);
+      } ,
+      (err) =>{
+        console.log(err);
+      }
+    );
   }
 
 }

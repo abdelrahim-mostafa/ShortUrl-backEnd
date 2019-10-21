@@ -17,8 +17,8 @@ DB.on("error" , (err) => {
 app.use(express.static(path.join(__dirname , "public")));
 
 // set middlewares 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : false}));
+app.use(bodyParser.json({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({extended : true, limit:'50mb'}));
 DB.once("open" , () => {
 
 

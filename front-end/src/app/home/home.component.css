@@ -1,0 +1,29 @@
+.content{
+    padding: 15px;
+    background-color: #d4d4d4;
+    border-radius: 0 0 10px 10px;
+}
+.content .home-content{
+    background-color: #00000030;
+    text-align: center;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.content .home-content a{
+    display: inline-block;
+    width: 33.33%;
+    padding: 20px;
+    text-decoration: none;
+    color: #1388e4;
+    font-weight: bold;
+    transition: ease-in-out 0.5s;
+}
+.content .home-content a:hover , .content .home-content a.active{
+    color: #fff;
+    background-color: #1388e4;
+}
+.content .home-data{
+    background-color: #0000001f;
+    padding: 20px 5px;
+    margin-top: 6px;
+}

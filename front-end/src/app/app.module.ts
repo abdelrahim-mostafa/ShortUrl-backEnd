@@ -15,6 +15,7 @@ import { ListUrlsComponent } from './list-urls/list-urls.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserService } from './user.service';
+import { UrlService } from './url.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { UserService } from './user.service';
     FlashMessagesModule.forRoot()
   ],
   providers: [
-    UserService
+    UserService,
+    UrlService
   ],
   bootstrap: [AppComponent]
 })
