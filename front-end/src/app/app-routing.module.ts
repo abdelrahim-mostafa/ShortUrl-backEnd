@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { ListUrlsComponent } from './list-urls/list-urls.component';
 import { UrlComponent } from './url/url.component';
 import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
@@ -15,9 +16,11 @@ const routes: Routes = [
   {
     path : 'home' , 
     component: HomeComponent ,
+    canActivate : [AuthGuard] ,
     children :[
      {
       path : '' , 
+      canActivateChild : [AuthGuard] ,
       children : [
         {path : '' , component: ListUrlsComponent },
         {path : 'urls' , component: ListUrlsComponent },

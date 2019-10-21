@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,21 +10,16 @@ import { UserService } from '../user.service';
 export class NavbarComponent implements OnInit {
 
   loginStatus : Boolean = false;
-  constructor(private user : UserService) { }
+  constructor(private user : UserService ,  private router : Router) { }
 
   ngOnInit() {
-    this.user.isLoggedin().subscribe(
-      (res) =>{
-        if(res['status'] === 'done') this.loginStatus  = true;
-        else this.loginStatus =  false;
-      },
-      (err) => this.loginStatus =  false
-    );
+    this.loginStatus = this.user.isLoggedin();
   }
 
   logOut() {
     this.user.logOut();
     this.loginStatus = false;
+    this.router.navigate(['/login']);
   }
 
 }

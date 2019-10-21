@@ -8,7 +8,24 @@ import { catchError } from 'rxjs/operators'
 })
 export class UserService {
 
-  constructor(private http : HttpClient) { }
+  loginStatus = false;
+  constructor(private http : HttpClient) {
+    this.loginStatus = !!localStorage.getItem('token');
+    let token = localStorage.getItem('token');
+    this.http.get<Object>(`http://localhost:3000/user/verify` , {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.requsetError)).subscribe(
+      (res) =>{
+        if(res['status'] === 'done') this.loginStatus  = true;
+        else this.loginStatus =  false;
+      },
+      (err) => this.loginStatus =  false
+    );
+    
+  }
 
   loginOrSignup(data , path) : Observable<Object> {
     return this.http.post(`http://localhost:3000/user/${path}` , data , {
@@ -35,14 +52,8 @@ export class UserService {
   setLocalStorage(key , value) {
     localStorage.setItem(key , value);
   }
-  isLoggedin() : Observable<Object>{
-    let token = localStorage.getItem('token');
-    return this.http.get<Object>(`http://localhost:3000/user/verify` , {
-      headers : new HttpHeaders({
-        'Content-Type' : 'application/json',
-        'Authorization' : `Bearer ${token}`
-      })
-    }).pipe(catchError(this.requsetError));
+  isLoggedin() : boolean{
+    return this.loginStatus;
   }
   logOut() {
     localStorage.removeItem('token');
