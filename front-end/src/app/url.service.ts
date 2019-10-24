@@ -29,6 +29,15 @@ export class UrlService {
       })
     }).pipe(catchError(this.requsetError));
   }
+  getUrlParser(parser : String) : Observable<Object> {
+    let token = localStorage.getItem('token');
+    return this.http.get<Object>(`http://localhost:3000/url/getLink/${parser}` , {
+      headers : new HttpHeaders({
+        'Content-Type' :'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.requsetError));
+  }
 
   deleteUrl(_id : String) : Observable<Object> {
     let token = localStorage.getItem('token');

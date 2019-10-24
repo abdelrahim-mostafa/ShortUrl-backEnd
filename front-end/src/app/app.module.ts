@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
+import { RedirectComponent } from './update-user-info/redirect.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UrlComponent } from './url/url.component';
 import { ListUrlsComponent } from './list-urls/list-urls.component';
@@ -16,18 +16,20 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserService } from './user.service';
 import { UrlService } from './url.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    UpdateUserInfoComponent,
+    RedirectComponent,
     UserInfoComponent,
     UrlComponent,
     ListUrlsComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

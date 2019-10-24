@@ -63,6 +63,19 @@ router.get('/urlData/:_id' , jwtVerifying.verify ,(req ,res) => {
         else res.json({status : 'done', data});
     });
 });
+// Get URL Data
+router.get('/getLink/:linkParser' , jwtVerifying.verify ,(req ,res) => {
+    //get url from database
+    Url.findOne({linkParser : req.params.linkParser , owner : req.auth} ,(err , data) => {
+        // check the error is exist
+        if(err){
+            console.log(`token error : ${err}`);
+            res.json({status : 'error' , error : "un-expected server error"});
+        } 
+        // get url data successfuly
+        else res.json({status : 'done', data});
+    });
+});
 // delete URL
 router.get('/list' , jwtVerifying.verify ,(req ,res) => {
     //delete url from database

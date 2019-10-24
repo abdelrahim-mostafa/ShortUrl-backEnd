@@ -5,8 +5,9 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ListUrlsComponent } from './list-urls/list-urls.component';
 import { UrlComponent } from './url/url.component';
-import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
 import { AuthGuard } from './auth.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RedirectComponent } from './update-user-info/redirect.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,9 @@ const routes: Routes = [
       ]
      },
     ]
-  }
+  },
+  {path : 'u/:parser' , component: RedirectComponent },
+  {path : '**' , component: NotFoundComponent },
 ];
 
 @NgModule({
