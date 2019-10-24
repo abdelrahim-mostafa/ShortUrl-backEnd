@@ -27,10 +27,21 @@ export class UserService {
     
   }
 
-  loginOrSignup(data , path) : Observable<Object> {
+  loginOrSignupOrupdate(data , path) : Observable<Object> {
+    let token = localStorage.getItem('token');
     return this.http.post<Object>(`http://localhost:3000/user/${path}` , data , {
       headers : new HttpHeaders({
-        'Content-Type' : 'application/json'
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.requsetError));
+  }
+  getUserData() : Observable<Object> {
+    let token = localStorage.getItem('token');
+    return this.http.get<Object>(`http://localhost:3000/user/verifyAndGetData` , {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${token}`
       })
     }).pipe(catchError(this.requsetError));
   }

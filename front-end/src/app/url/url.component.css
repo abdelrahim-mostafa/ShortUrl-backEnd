@@ -1,0 +1,17 @@
+.formStyle{
+    width: 80%;
+    margin: auto;
+}
+.formStyle .head h2{
+    text-align: center;
+    padding: 10px;
+    background-color: #035da5;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 0;
+}
+.formStyle .body{
+    padding: 20px 10px;
+    background-color: #969696;
+    color: #fff;
+}

@@ -24,8 +24,7 @@ router.post('/update' , jwtVerifying.verify ,(req ,res) => {
     // url data
     let urlDate = {
         link : req.body.link ,
-        status : req.body.status ,
-        owner : req.auth 
+        status : req.body.status 
     };
     //update url into database
     Url.findOneAndUpdate({_id : req.body._id , owner : req.auth} , urlDate ,(err , data) => {
@@ -49,6 +48,19 @@ router.delete('/delete/:_id' , jwtVerifying.verify ,(req ,res) => {
         } 
         // url delete successfuly
         else res.json({status : 'done'});
+    });
+});
+// Get URL Data
+router.get('/urlData/:_id' , jwtVerifying.verify ,(req ,res) => {
+    //get url from database
+    Url.findOne({_id : req.params._id , owner : req.auth} ,(err , data) => {
+        // check the error is exist
+        if(err){
+            console.log(`token error : ${err}`);
+            res.json({status : 'error' , error : "un-expected server error"});
+        } 
+        // get url data successfuly
+        else res.json({status : 'done', data});
     });
 });
 // delete URL

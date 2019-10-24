@@ -1,0 +1,22 @@
+.table{
+    background-color: #00000017;
+    text-align: center;
+    color: #000;
+}
+thead{
+    background-color: #000;
+    color: #fff;
+}
+tbody{
+    background-color: #fff;
+}
+.setWidth{
+    display: inline-block;
+    word-break: break-all;
+}
+.controllSetting{
+    width: 255px;
+}
+.btn{
+    margin : 5px;
+}

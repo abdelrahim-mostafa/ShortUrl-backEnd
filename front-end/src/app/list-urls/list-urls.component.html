@@ -1,1 +1,26 @@
-<p>list-urls works!</p>
+<p *ngIf="!allUrls">There is nothing to display</p>
+<table *ngIf="allUrls" class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="">Link</th>
+            <th class="">Short Link</th>
+            <th>Status</th>
+            <th class="controllSetting">Controlls</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let url of allUrls">
+            <td class="setWidth">{{url.link}}</td>
+            <td><a href="http://localhost/u/{{url.linkParser}}" target="_blank">http://localhost:4200/u/{{url.linkParser}}</a></td>
+            <td>{{url.status == true ? 'Activated' : 'Dectivated'}}</td>
+            <td>
+                <button class="btn btn-primary btn-sm" (click)="eidtRedirect(url._id)">edit <span class="glyphicon glyphicon-edit"></span></button>
+
+                <button *ngIf="url.status" class="btn btn-info btn-sm" (click)="activeStatus(url.link , url._id , false)">Deactivate <span class="glyphicon glyphicon-remove"></span></button>
+                <button *ngIf="!url.status" class="btn btn-success btn-sm" (click)="activeStatus(url.link , url._id , true)">activate <span class="glyphicon glyphicon-ok"></span></button>
+
+                <button class="btn btn-danger btn-sm" (click)="deleteUrl(url._id)">delete <span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -13,8 +13,35 @@ export class UrlService {
   allUrls() : Observable<Object> {
     let token = localStorage.getItem('token');
     return this.http.get<Object>(`http://localhost:3000/url/list` , {
-      reportProgress: true,
-      observe: 'events',
+      headers : new HttpHeaders({
+        'Content-Type' :'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.requsetError));
+  }
+  
+  urlData(_id : String) : Observable<Object> {
+    let token = localStorage.getItem('token');
+    return this.http.get<Object>(`http://localhost:3000/url/urlData/${_id}` , {
+      headers : new HttpHeaders({
+        'Content-Type' :'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.requsetError));
+  }
+
+  deleteUrl(_id : String) : Observable<Object> {
+    let token = localStorage.getItem('token');
+    return this.http.delete<Object>(`http://localhost:3000/url/delete/${_id}` , {
+      headers : new HttpHeaders({
+        'Content-Type' :'application/json',
+        'Authorization' : `Bearer ${token}`
+      })
+    }).pipe(catchError(this.requsetError));
+  }
+  newOrUpdateUrl(data : Object , path : String) : Observable<Object> {
+    let token = localStorage.getItem('token');
+    return this.http.post<Object>(`http://localhost:3000/url/${path}` , data , {
       headers : new HttpHeaders({
         'Content-Type' :'application/json',
         'Authorization' : `Bearer ${token}`

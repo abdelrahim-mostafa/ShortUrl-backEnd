@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { MyValidation } from '../my-validation';
 import { UserService } from '../user.service';
@@ -20,8 +20,10 @@ export class SignupComponent implements OnInit {
     password : '',
   };
 
+  pageCase : String = 'signup';
+
   constructor(private fb : FormBuilder , private user : UserService , private router : Router ,
-              private flashMessage : FlashMessagesService) { }
+              private flashMessage : FlashMessagesService , private route : ActivatedRoute) { }
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -32,7 +34,30 @@ export class SignupComponent implements OnInit {
     });
     this.signupForm.valueChanges.subscribe(_ =>{
       this.getFormError();
-    })
+    });
+    if(this.route.snapshot.routeConfig.path === 'updateUser'){
+      this.pageCase = 'update';
+      this.signupForm.get('password').setValidators([]);
+      this.getUserData();
+    }
+  }
+
+  getUserData() {
+    this.user.getUserData().subscribe(
+      (res) => {
+        if(res['status'] === "done"){
+          let data = res['data'];
+          this.user.setLocalStorage('userInfo' , JSON.stringify({email : data['email'] , fullName : `${data['firstname']} ${ data['lastname']}` , profile : data['profile']}));
+          this.signupForm.patchValue({email : data['email'] , firstname : data['firstname'] , lastname : data['lastname']});
+        } else {
+          this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" });
+        }
+      },
+      (err) => {
+        console.log({err});
+        this.flashMessage.show(err.message, { cssClass: "alert-danger" });
+      }
+    );
   }
 
   hasError(field){
@@ -51,11 +76,13 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() : void {
-    this.user.loginOrSignup(this.signupForm.value , 'signup').subscribe(
+    this.user.loginOrSignupOrupdate(this.signupForm.value , this.pageCase).subscribe(
       (res) => {
         if(res['status'] === "done"){
           this.flashMessage.show(`${res['status']} : you can Login now `, { cssClass: "alert-success" });
-          this.router.navigate(['/login']);
+          if(this.pageCase === 'update'){
+            this.getUserData();
+          } else this.router.navigate(['/login']);
         } else {
           this.flashMessage.show(`${res['status']} : ${res['error']}`, { cssClass: "alert-danger" });
         }

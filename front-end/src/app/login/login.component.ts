@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() : void {
-    this.user.loginOrSignup(this.loginForm.value , 'login').subscribe(
+    this.user.loginOrSignupOrupdate(this.loginForm.value , 'login').subscribe(
       (res) => {
         if(res['status'] === "done"){
           this.flashMessage.show(`${res['status']} : Welcome ^_^ `, { cssClass: "alert-success" });

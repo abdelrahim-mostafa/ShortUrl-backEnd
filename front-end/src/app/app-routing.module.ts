@@ -26,7 +26,7 @@ const routes: Routes = [
         {path : 'urls' , component: ListUrlsComponent },
         {path : 'new' , component: UrlComponent },
         {path : 'updateUrl/:id' , component: UrlComponent },
-        {path : 'updateUser' , component: UpdateUserInfoComponent },
+        {path : 'updateUser' , component: SignupComponent },
       ]
      },
     ]

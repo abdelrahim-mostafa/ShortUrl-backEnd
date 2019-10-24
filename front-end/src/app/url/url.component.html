@@ -1,1 +1,37 @@
-<p>url works!</p>
+<div class="">
+    <div class="formStyle">
+        <div class="head">
+            <h2>{{ urlCase.case | titlecase }} URL</h2>
+        </div>
+        <div class="body">
+            <form [formGroup]="urlForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+                <div class="form-group" [ngClass]="{'has-error' : hasError('link')}">
+                    <label for="link" class="col-sm-3 control-label">Link</label>
+                    <div class="col-sm-9">
+                        <input type="text" (blur)="getFormError()" class="form-control" id="link" formControlName="link" placeholder="Link">
+                        <span class="help-block" *ngIf="hasError('link')">
+                            {{ urlFormErrors.link }}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error' : hasError('status')}">
+                    <label for="status" class="col-sm-3 control-label">Status</label>
+                    <div class="col-sm-9">
+                        <select type="text" (blur)="getFormError()" class="form-control" id="status" formControlName="status">
+                            <option value="true">Active</option>
+                            <option value="false">DeActive</option>
+                        </select>
+                        <span class="help-block" *ngIf="hasError('status')">
+                            {{ urlFormErrors.status }}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary col-sm-12">Save</button>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
