@@ -14,7 +14,7 @@ DB.on("error" , (err) => {
     console.log("connection error" ,err);
 });
 // make static file
-app.use(express.static(path.join(__dirname , "public")));
+app.use(express.static("./public"));
 
 // set middlewares 
 app.use(bodyParser.json({limit: '50mb', extended: true}));

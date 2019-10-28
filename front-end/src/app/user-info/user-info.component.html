@@ -1,6 +1,6 @@
 <div class="user-info">
     <div class="col-sm-3 col-xs-12" (mouseenter)="toggleUpload(true)" (mouseleave)="toggleUpload(false)">
-        <img src="./assets/images/{{userInfo.profile}}" class="profile" alt="profile">
+        <img [src]="'http://localhost:3000/images/'+userInfo.profile" class="profile" alt="profile">
         <label *ngIf="upladState" for="profile-image" class=" btn btn-success upload-image" >Upload Image <span class="glyphicon glyphicon-upload"></span></label>
         <input type="file" (change)="loadFile($event)" id="profile-image" accept="image/*">
         <button *ngIf="upladState && file" (click)="onSubmit()" class="btn btn-primary">Upload</button>

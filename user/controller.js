@@ -7,7 +7,7 @@ const jwtverifying = require('../jwtVerify/verifying');
 const User = require('./modle/user');
 
 let storage = multer.diskStorage({
-    destination : './front-end/src/assets/images/',
+    destination : './public/images/' ,//'./front-end/src/assets/images/',
     filename : (req ,file , cb) =>{
         cb(null , file.fieldname+'_'+Date.now()+path.extname(file.originalname));
     }
@@ -75,7 +75,7 @@ router.post('/signup' , (req , res) => {
 });
 router.post('/update' , jwtverifying.verify , (req , res) => {
     // set data which want to update
-    let newData = { fullname : req.body.fullname , lastname : req.body.lastname , email : req.body.email};
+    let newData = { firstname : req.body.firstname , lastname : req.body.lastname , email : req.body.email};
     if(req.body.password){
         let salt = bcrypt.genSaltSync(10);
         newData.password = bcrypt.hashSync(req.body.password , salt );
