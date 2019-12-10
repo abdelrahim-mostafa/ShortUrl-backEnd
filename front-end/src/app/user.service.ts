@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http : HttpClient) {
     this.loginStatus = !!localStorage.getItem('token');
     let token = localStorage.getItem('token');
-    this.http.get<Object>(`http://localhost:3000/user/verify` , {
+    this.http.get<Object>(`user/verify` , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json',
         'Authorization' : `Bearer ${token}`
@@ -29,7 +29,7 @@ export class UserService {
 
   loginOrSignupOrupdate(data , path) : Observable<Object> {
     let token = localStorage.getItem('token');
-    return this.http.post<Object>(`http://localhost:3000/user/${path}` , data , {
+    return this.http.post<Object>(`user/${path}` , data , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json',
         'Authorization' : `Bearer ${token}`
@@ -38,7 +38,7 @@ export class UserService {
   }
   getUserData() : Observable<Object> {
     let token = localStorage.getItem('token');
-    return this.http.get<Object>(`http://localhost:3000/user/verifyAndGetData` , {
+    return this.http.get<Object>(`user/verifyAndGetData` , {
       headers : new HttpHeaders({
         'Content-Type' : 'application/json',
         'Authorization' : `Bearer ${token}`
@@ -47,7 +47,7 @@ export class UserService {
   }
   uploadProfile(data : any) : Observable<Object> {
     let token = localStorage.getItem('token');
-    return this.http.post<Object>(`http://localhost:3000/user/uploadFile` , data , {
+    return this.http.post<Object>(`user/uploadFile` , data , {
       reportProgress: true,
       observe: 'events',
       headers : new HttpHeaders({

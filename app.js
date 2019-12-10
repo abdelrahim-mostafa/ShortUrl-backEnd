@@ -30,6 +30,11 @@ DB.once("open" , () => {
     // set URL controller
     app.use('/url' , require('./urlParser/controller'));
 
+    // view all
+    app.get('*' , (req , res) => {
+        res.sendFile(path.join(__dirname , 'public/index.html'));
+    });
+
     app.listen(process.env.PORT , (err) => {
         if(err) console.log("listen Error : " ,err);
         console.log(`http://localhost:${process.env.PORT}/`);;

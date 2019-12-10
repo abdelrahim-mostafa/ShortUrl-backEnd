@@ -12,7 +12,7 @@ export class UrlService {
 
   allUrls() : Observable<Object> {
     let token = localStorage.getItem('token');
-    return this.http.get<Object>(`http://localhost:3000/url/list` , {
+    return this.http.get<Object>(`url/list` , {
       headers : new HttpHeaders({
         'Content-Type' :'application/json',
         'Authorization' : `Bearer ${token}`
@@ -22,7 +22,7 @@ export class UrlService {
   
   urlData(_id : String) : Observable<Object> {
     let token = localStorage.getItem('token');
-    return this.http.get<Object>(`http://localhost:3000/url/urlData/${_id}` , {
+    return this.http.get<Object>(`url/urlData/${_id}` , {
       headers : new HttpHeaders({
         'Content-Type' :'application/json',
         'Authorization' : `Bearer ${token}`
@@ -31,7 +31,7 @@ export class UrlService {
   }
   getUrlParser(parser : String) : Observable<Object> {
     let token = localStorage.getItem('token');
-    return this.http.get<Object>(`http://localhost:3000/url/getLink/${parser}` , {
+    return this.http.get<Object>(`url/getLink/${parser}` , {
       headers : new HttpHeaders({
         'Content-Type' :'application/json',
         'Authorization' : `Bearer ${token}`
@@ -41,7 +41,7 @@ export class UrlService {
 
   deleteUrl(_id : String) : Observable<Object> {
     let token = localStorage.getItem('token');
-    return this.http.delete<Object>(`http://localhost:3000/url/delete/${_id}` , {
+    return this.http.delete<Object>(`url/delete/${_id}` , {
       headers : new HttpHeaders({
         'Content-Type' :'application/json',
         'Authorization' : `Bearer ${token}`
@@ -50,7 +50,7 @@ export class UrlService {
   }
   newOrUpdateUrl(data : Object , path : String) : Observable<Object> {
     let token = localStorage.getItem('token');
-    return this.http.post<Object>(`http://localhost:3000/url/${path}` , data , {
+    return this.http.post<Object>(`url/${path}` , data , {
       headers : new HttpHeaders({
         'Content-Type' :'application/json',
         'Authorization' : `Bearer ${token}`
